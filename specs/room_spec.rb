@@ -30,4 +30,11 @@ end
       assert_equal(2, @room.number_of_guests)
   end
 
+  def test_check_out_guest
+      @room.add_guest(@guest1)
+      @room.add_guest(@guest2)
+      @room.remove_guest(@guest2)
+      assert_equal(false, @room.is_guest_in_room(@guest2))
+  end
+
 end
