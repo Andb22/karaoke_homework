@@ -37,4 +37,8 @@ end
       assert_equal(false, @room.is_guest_in_room(@guest2))
   end
 
+  def test_does_room_have_songs
+      assert_equal(@song1, @room.playlist[0])
+  end
+
 end
