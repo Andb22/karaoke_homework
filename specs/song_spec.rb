@@ -8,7 +8,7 @@ class Testsong < Minitest::Test
 
   def setup
     @song = Song.new("Bohemian Rhapsody")
-  end
+end
 
   def test_song_has_name
     assert_equal("Bohemian Rhapsody", @song.name)
