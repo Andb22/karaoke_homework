@@ -9,10 +9,11 @@ Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
 class Testroom < Minitest::Test
 
 def setup
-  @guest1 = Guest.new("Kazu", 50)
-  @guest2 = Guest.new("Hisa", 100)
-  @guest3 = Guest.new("Yasu", 20)
-  @guest4 = Guest.new("Mitsu", 0)
+  @guest1 = Guest.new("Kazu", 50, "")
+  @guest2 = Guest.new("Hisa", 100, "")
+  @guest3 = Guest.new("Yasu", 20, "")
+  @guest4 = Guest.new("Mitsu", 0, "")
+  @guest5 = Guest.new("Yuna", 120, "Lay Lady Lay")
   @song1 = Song.new("Bohemian Rhapsody")
   @song2 = Song.new("Lay Lady Lay")
 
@@ -59,4 +60,7 @@ end
     assert_equal(true, @room.guest_entry_fee(@guest2))
   end
 
+  def test_guests_fav_song_in_room
+    assert_equal("Woohoo", @room.add_guest(@guest5))
+  end
 end
