@@ -1,16 +1,19 @@
 class Room
 
-  attr_reader :name, :playlist, :guests_in_room
+  attr_reader :name, :playlist, :guests_in_room, :tab
 
 def initialize(name, playlist)
   @name = name
   @playlist = playlist
   @guests_in_room = []
+  @tab = tab
 end
 
 def add_guest(guest)
+  entry_fee = 10
   if number_of_guests < 2
    @guests_in_room.push(guest)
+   guest.charge_wallet(entry_fee)
     @playlist.any? { |song| song.name == guest.fav_song}
     return "Woohoo"
   else
