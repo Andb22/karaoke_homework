@@ -6,7 +6,7 @@ def initialize(name, playlist)
   @name = name
   @playlist = playlist
   @guests_in_room = []
-  @tab = tab
+  @tab = 0
 end
 
 def add_guest(guest)
@@ -40,6 +40,10 @@ entry_fee = 10
     return false
   end
   return true
+end
+
+def order_drink(drink)
+  @tab += drink.price
 end
 
 end
