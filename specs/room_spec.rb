@@ -9,8 +9,10 @@ Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
 class Testroom < Minitest::Test
 
 def setup
-  @guest1 = Guest.new("Kazu", 0)
+  @guest1 = Guest.new("Kazu", 50)
   @guest2 = Guest.new("Hisa", 100)
+  @guest3 = Guest.new("Yasu", 20)
+  @guest4 = Guest.new("Mitsu", 0)
   @song1 = Song.new("Bohemian Rhapsody")
   @song2 = Song.new("Lay Lady Lay")
 
@@ -20,9 +22,9 @@ def setup
 
 end
 
-def test_room_has_name
-  assert_equal("Party Room", @room.name)
-end
+  def test_room_has_name
+    assert_equal("Party Room", @room.name)
+  end
 
   def test_check_in_guest
       @room.add_guest(@guest1)
@@ -39,6 +41,22 @@ end
 
   def test_does_room_have_songs
       assert_equal(@song1, @room.playlist[0])
+  end
+
+  def test_room_is_full
+    @room.add_guest(@guest1)
+    @room.add_guest(@guest2)
+    assert_equal("Room is full", @room.add_guest(@guest3))
+  end
+
+  def test_guest_cannot_afford_entry_fee
+    @room.add_guest(@guest4)
+    assert_equal(false, @room.guest_entry_fee(@guest4))
+  end
+
+  def test_guest_can_afford_entry_fee
+    @room.add_guest(@guest2)
+    assert_equal(true, @room.guest_entry_fee(@guest2))
   end
 
 end
